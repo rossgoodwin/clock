@@ -4,14 +4,6 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<style>
-
-.clocktext {
-	color: red;
-}
-
-</style>
-
 <script>
 
 function startTime() {
@@ -40,11 +32,15 @@ function startTime() {
 	}
 }
 
-function ctt0(hour, minute) {
-	$.getJSON("js/the time is.json", function(json) {
+function fetchText(word, block) {
+	$.getJSON("js/"+word+".json", function(json) {
 		var rand = Math.floor(Math.random() * json.length);
-		document.getElementById('itis').innerHTML = json[rand];
+		document.getElementById(block).innerHTML = json[rand];
 	});
+}
+
+function ctt0(hour, minute) {
+	fetchText("the time is", "itis");
 
 	if (hour === 0) {
 		$.getJSON("js/midnight.json", function(json) {
@@ -99,6 +95,14 @@ function ctt0(hour, minute) {
 
 
 </script>
+
+<style>
+
+.clocktext {
+	color: red;
+}
+
+</style>
 
 </head>
 <body onload="startTime()">
