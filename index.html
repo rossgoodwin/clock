@@ -9,7 +9,7 @@
 function repeatEvery(func, interval) {
 	// This function courtesy of:
 	// http://stackoverflow.com/questions/10795164/accurately-run-a-function-when-the-minute-changes
-	
+
     // Check current time and calculate the delay until next interval
     var now = new Date,
     	delay = interval - now % interval;
@@ -98,6 +98,11 @@ function ctt0(hour, minute) {
 			fetchText("in the afternoon", "blk3");
 		}
 	}
+
+	document.getElementById("blk4").innerHTML = "";
+	document.getElementById("blk5").innerHTML = "";
+	document.getElementById("blk6").innerHTML = "";
+
 }
 
 function ctt1(hour, minute) {
@@ -149,7 +154,7 @@ function ctt1(hour, minute) {
 function ctt2(hour, minute) {
 	theTimeIs();
 
-	fetchText("quarter", "bk1");
+	fetchText("quarter", "blk1");
 
 	var ap = "after";
 	if (Math.random() >= 0.5) {
@@ -184,6 +189,8 @@ function ctt2(hour, minute) {
 			fetchText("in the afternoon", "blk5");
 		}
 	}
+
+	document.getElementById("blk6").innerHTML = "";
 }
 
 function ctt3(hour, minute) {
@@ -218,6 +225,10 @@ function ctt3(hour, minute) {
 			fetchText("post meridiem", "blk3");
 		}
 	}
+
+	document.getElementById("blk4").innerHTML = "";
+	document.getElementById("blk5").innerHTML = "";
+	document.getElementById("blk6").innerHTML = "";
 }
 
 function ctt4(hour, minute) {
@@ -254,6 +265,8 @@ function ctt4(hour, minute) {
 			fetchText("in the afternoon", "blk5");
 		}
 	}
+
+	document.getElementById("blk6").innerHTML = "";
 }
 
 function ctt6(hour, minute) {
@@ -286,6 +299,8 @@ function ctt6(hour, minute) {
 			fetchText("in the afternoon", "blk5");
 		}
 	}
+
+	document.getElementById("blk6").innerHTML = "";
 }
 
 function ctt8(hour, minute) {
