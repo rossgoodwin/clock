@@ -40,19 +40,18 @@ function fetchText(word, block) {
 }
 
 function ctt0(hour, minute) {
-	fetchText("the time is", "itis");
+	var itisX = Math.random();
+	if (itisX >= 0.5) {
+		fetchText("the time is", "itis");
+	} else {
+		fetchText("it is", "itis");
+	}
 
 	if (hour === 0) {
-		$.getJSON("js/midnight.json", function(json) {
-			var rand = Math.floor(Math.random() * json.length);
-			document.getElementById('blk1').innerHTML = json[rand];
-		});		
+		fetchText("midnight", "blk1");	
 	}
 	else if (hour === 12) {
-		$.getJSON("js/noon.json", function(json) {
-			var rand = Math.floor(Math.random() * json.length);
-			document.getElementById('blk1').innerHTML = json[rand];
-		});		
+		fetchText("noon", "blk1");
 	}
 	else {
 		if (hour > 12) {
@@ -60,35 +59,20 @@ function ctt0(hour, minute) {
 		} else {
 			var hr = hour;
 		}
-		$.getJSON("js/"+hr+".json", function(json) {
-			var rand = Math.floor(Math.random() * json.length);
-			document.getElementById('blk1').innerHTML = json[rand];
-		});
+		fetchText(hr, "blk1");
 	}
 
 	if (hour != 0 && hour != 12) {
-		$.getJSON("js/o\'clock.json", function(json) {
-			var rand = Math.floor(Math.random() * json.length);
-			document.getElementById('blk2').innerHTML = json[rand];
-		});	
+		fetchText("o\'clock", "blk2");
 
 		if (hour < 12) {
-			$.getJSON("js/in the morning.json", function(json) {
-				var rand = Math.floor(Math.random() * json.length);
-				document.getElementById('blk3').innerHTML = json[rand];
-			});
+			fetchText("in the morning", "blk3");
 		} 
 		else if (hour > 16) {
-			$.getJSON("js/in the evening.json", function(json) {
-				var rand = Math.floor(Math.random() * json.length);
-				document.getElementById('blk3').innerHTML = json[rand];
-			});
+			fetchText("in the evening", "blk3");
 		}
 		else {
-			$.getJSON("js/in the afternoon.json", function(json) {
-				var rand = Math.floor(Math.random() * json.length);
-				document.getElementById('blk3').innerHTML = json[rand];
-			});
+			fetchText("in the afternoon", "blk3");
 		}
 	}
 }
