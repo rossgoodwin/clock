@@ -6,25 +6,6 @@
 
 <script>
 
-function repeatEvery(func, interval) {
-	// This function courtesy of:
-	// http://stackoverflow.com/questions/10795164/accurately-run-a-function-when-the-minute-changes
-
-    // Check current time and calculate the delay until next interval
-    var now = new Date,
-    	delay = interval - now % interval;
-
-    function start() {
-        // Execute function now...
-        func();
-        // ... and every interval
-        setInterval(func, interval);
-    }
-
-    // Delay execution until it's an even interval
-    setTimeout(start, delay);
-}
-
 function startTime() {
 	var today = new Date();
 	var h = today.getHours();
@@ -48,8 +29,6 @@ function startTime() {
 	} else if (m >= 50 && m <= 59) {
 		ctt8(h, m);
 	}
-
-	repeatEvery(startTime, 60*1000);
 }
 
 function fetchText(word, block) {
@@ -341,7 +320,19 @@ function ctt8(hour, minute) {
 	}
 }
 
-$(startTime)
+function checkMinute() {
+	var minute = new Date().getMinutes();
+	if (minute != currentMinute) {
+		currentMinute = minute;
+		startTime();
+	}
+}
+
+$(function() {
+	var currentMinute = new Date().getMinutes();
+	startTime();
+	setInterval(checkMinute, 100);
+});
 
 </script>
 
