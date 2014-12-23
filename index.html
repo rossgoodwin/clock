@@ -168,7 +168,13 @@ function ctt2(hour, minute) {
 function ctt3(hour, minute) {
 	theTimeIs();
 
-	fetchText(hour, "blk1");
+	var hr = hour;
+	if (hour === 0) {
+		hr = 12;
+	} else if (hour > 12) {
+		hr = hour - 12;
+	}
+	fetchText(hr, "blk1");
 
 	fetchText(minute, "blk2");
 
