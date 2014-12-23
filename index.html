@@ -10,7 +10,7 @@ function startTime() {
 	var today = new Date();
 	var h = today.getHours();
 	// var m = today.getMinutes();
-	var m = 0;
+	var m = 11;
 	if (m === 0) {
 		ctt0(h, m);
 	} else if (m > 0 && m < 15) {
@@ -39,13 +39,17 @@ function fetchText(word, block) {
 	});
 }
 
-function ctt0(hour, minute) {
+function theTimeIs() {
 	var itisX = Math.random();
 	if (itisX >= 0.5) {
 		fetchText("the time is", "itis");
 	} else {
 		fetchText("it is", "itis");
 	}
+}
+
+function ctt0(hour, minute) {
+	theTimeIs();
 
 	if (hour === 0) {
 		fetchText("midnight", "blk1");	
@@ -54,10 +58,9 @@ function ctt0(hour, minute) {
 		fetchText("noon", "blk1");
 	}
 	else {
+		var hr = hour;
 		if (hour > 12) {
-			var hr = hour - 12;
-		} else {
-			var hr = hour;
+			hr = hour - 12;
 		}
 		fetchText(hr, "blk1");
 	}
@@ -73,6 +76,52 @@ function ctt0(hour, minute) {
 		}
 		else {
 			fetchText("in the afternoon", "blk3");
+		}
+	}
+}
+
+function ctt1(hour, minute) {
+	theTimeIs();
+
+	fetchText(minute, "blk1");
+
+	var m = "minutes";
+	if (minute === 1) {
+		m = "minute";
+	}
+	fetchText(m, "blk2");
+
+	var ap = "after";
+	if (Math.random() >= 0.5) {
+		ap = "past";
+	}
+	fetchText(ap, "blk3");
+
+	if (hour === 0) {
+		fetchText("midnight", "blk4");	
+	}
+	else if (hour === 12) {
+		fetchText("noon", "blk4");
+	}
+	else {
+		var hr = hour;
+		if (hour > 12) {
+			hr = hour - 12;
+		}
+		fetchText(hr, "blk4");
+	}
+
+	if (hour != 0 && hour != 12) {
+		fetchText("o\'clock", "blk5");
+
+		if (hour < 12) {
+			fetchText("in the morning", "blk6");
+		} 
+		else if (hour > 16) {
+			fetchText("in the evening", "blk6");
+		}
+		else {
+			fetchText("in the afternoon", "blk6");
 		}
 	}
 }
