@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<style>
+
+.clocktext {
+	color: red;
+}
+
+</style>
+
+<script>
+
+function startTime() {
+	var today = new Date();
+	var h = today.getHours();
+	// var m = today.getMinutes();
+	var m = 0;
+	if (m === 0) {
+		ctt0(h, m);
+	} else if (m > 0 && m < 15) {
+		ctt1(h, m);
+	} else if (m === 15) {
+		ctt2(h, m);
+	} else if (m > 15 && m < 30) {
+		ctt3(h, m);
+	} else if (m === 30) {
+		ctt4(h, m);
+	} else if (m > 30 && m < 45) {
+		ctt5(h, m);
+	} else if (m === 45) {
+		ctt6(h, m);
+	} else if (m > 45 && m <= 49) {
+		ctt7(h, m);
+	} else if (m >= 50 && m <= 59) {
+		ctt8(h, m);
+	}
+}
+
+function ctt0(hour, minute) {
+	$.getJSON("js/the time is.json", function(json) {
+		var rand = Math.floor(Math.random() * json.length);
+		document.getElementById('itis').innerHTML = json[rand];
+	});
+
+	if (hour === 0) {
+		$.getJSON("js/midnight.json", function(json) {
+			var rand = Math.floor(Math.random() * json.length);
+			document.getElementById('blk1').innerHTML = json[rand];
+		});		
+	}
+	else if (hour === 12) {
+		$.getJSON("js/noon.json", function(json) {
+			var rand = Math.floor(Math.random() * json.length);
+			document.getElementById('blk1').innerHTML = json[rand];
+		});		
+	}
+	else {
+		if (hour > 12) {
+			var hr = hour - 12;
+		} else {
+			var hr = hour;
+		}
+		$.getJSON("js/"+hr+".json", function(json) {
+			var rand = Math.floor(Math.random() * json.length);
+			document.getElementById('blk1').innerHTML = json[rand];
+		});
+	}
+
+	if (hour != 0 && hour != 12) {
+		$.getJSON("js/o\'clock.json", function(json) {
+			var rand = Math.floor(Math.random() * json.length);
+			document.getElementById('blk2').innerHTML = json[rand];
+		});	
+
+		if (hour < 12) {
+			$.getJSON("js/in the morning.json", function(json) {
+				var rand = Math.floor(Math.random() * json.length);
+				document.getElementById('blk3').innerHTML = json[rand];
+			});
+		} 
+		else if (hour > 16) {
+			$.getJSON("js/in the evening.json", function(json) {
+				var rand = Math.floor(Math.random() * json.length);
+				document.getElementById('blk3').innerHTML = json[rand];
+			});
+		}
+		else {
+			$.getJSON("js/in the afternoon.json", function(json) {
+				var rand = Math.floor(Math.random() * json.length);
+				document.getElementById('blk3').innerHTML = json[rand];
+			});
+		}
+	}
+}
+
+
+</script>
+
+</head>
+<body onload="startTime()">
+
+<div id="itis"></div>
+<div id="blk1"></div>
+<div id="blk2"></div>
+<div id="blk3"></div>
+<div id="blk4"></div>
+<div id="blk5"></div>
+<div id="blk6"></div>
+
+
+</body>
+</html>
