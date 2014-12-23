@@ -328,8 +328,9 @@ function checkMinute() {
 	}
 }
 
+var currentMinute = new Date().getMinutes();
+
 $(function() {
-	var currentMinute = new Date().getMinutes();
 	startTime();
 	setInterval(checkMinute, 100);
 });
