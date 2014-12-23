@@ -266,7 +266,11 @@ function ctt6(hour, minute) {
 		fetchText("midnight", "blk3");
 	}
 	else {
-		fetchText(hour+1, "blk3");
+		var hr = hour + 1;
+		if (hour > 11) {
+			hr = hour - 11;
+		}
+		fetchText(hr, "blk3");
 
 		fetchText("o\'clock", "blk4");
 
@@ -306,7 +310,11 @@ function ctt8(hour, minute) {
 		fetchText("midnight", "blk4");
 	}
 	else {
-		fetchText(hour+1, "blk4");
+		var hr = hour + 1;
+		if (hour > 11) {
+			hr = hour - 11;
+		}
+		fetchText(hr, "blk4");
 
 		fetchText("o\'clock", "blk5");
 
